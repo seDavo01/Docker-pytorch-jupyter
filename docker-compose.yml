@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  torch:
+    # image: pytorch/pytorch
+    init: true
+    build:
+      context: ./
+      dockerfile: pytorch.Dockerfile
+    ports:
+      - "8888:8888"
+      - "6006:6006"
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+    command: jupyter notebook --ip 0.0.0.0 --no-browser --allow-root --NotebookApp.token=mysup3rtok3n
